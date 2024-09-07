@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contato: `
             <div id="contato">
                 <h2>Entre em Contato</h2>
-                <p>E-mail: <a href="mailto:contato@irmaosleitores.com">contato@irmaosleitores.com</a></p>
+                <p>E-mail: <a href="mailto:contato@livrariadoisirmaos.com">contato@livrariadoisirmaos.com</a></p>
                 <p>WhatsApp: <a href="https://web.whatsapp.com/send?phone=5511999999999">+55 (11) 99999-9999</a></p>
                 <h3>Formulário de Contato</h3>
                 <form>
@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="faq-answer">Sim, temos uma ampla seleção de e-books disponíveis em nossa loja virtual.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">9. Como posso me tornar um autor publicado pela Livraria Irmãos Leitores?</div>
-                    <div class="faq-answer">Entre em contato conosco através do e-mail autores@irmaosleitores.com para mais informações sobre nosso processo de submissão.</div>
+                    <div class="faq-question">9. Como posso me tornar um autor publicado pela Livraria Dois Irmãos?</div>
+                    <div class="faq-answer">Entre em contato conosco através do e-mail autores@livrariadoisirmaos.com para mais informações sobre nosso processo de submissão.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">10. Vocês oferecem programas de fidelidade?</div>
