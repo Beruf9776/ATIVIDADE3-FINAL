@@ -1,0 +1,148 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('plano-de-fundo.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+main {
+    padding: 6rem 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    min-height: calc(100vh - 100px);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos específicos para cada página */
+#home {
+    text-align: center;
+    padding: 2rem;
+}
+
+#home .logo {
+    max-width: 200px;
+    margin-bottom: 1rem;
+}
+
+#sobre {
+    padding: 2rem;
+}
+
+#produtos {
+    display: flex;
+    flex-direction: column;
+}
+
+.categoria {
+    margin-bottom: 2rem;
+}
+
+.categoria h2 {
+    text-align: center;
+}
+
+.livros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.livro {
+    width: 200px;
+    margin: 1rem;
+    text-align: center;
+}
+
+.livro img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.comprar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+#contato {
+    padding: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form input, form textarea {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+#faq {
+    padding: 2rem;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+}
+
+.faq-question {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.faq-answer {
+    display: none;
+    padding-left: 1rem;
+}
