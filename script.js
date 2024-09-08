@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content');
     const navLinks = document.querySelectorAll('nav a');
-
+    const carrinhoBtn = document.getElementById('carrinho-btn');                                                                                           
+    const carrinhoContador = document.getElementById('carrinho-contador');                                                                                 
+    let carrinho = [];                                                                                                                                  
+                          
     const pages = {
         home: `
             <div id="home">
@@ -119,12 +122,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="faq-answer">Sim, temos um programa de pontos onde cada compra acumula pontos que podem ser trocados por descontos em compras futuras.</div>
                 </div>
             </div>
-        `
-    };
-
-    function gerarLivros(quantidade, categoria) {
-        let livros = '';
-        const titulos = {
+        `,                                                                                                                                                 
+         carrinho: `                                                                                                                                        
+             <div id="carrinho">                                                                                                                            
+                 <h2>Carrinho de Compras</h2>                                                                                                               
+                 <div id="itens-carrinho"></div>                                                                                                            
+                 <div id="total-carrinho"></div>                                                                                                            
+                 <button id="finalizar-compra">Finalizar Compra</button>                                                                                    
+             </div>                                                                                                                                         
+         `                                                                                                                                                  
+     };                                                                                                                                                     
+                                                                                                                                                            
+     function gerarLivros(quantidade, categoria) {                                                                                                          
+         let livros = '';                                                                                                                                   
+         const titulos = {
             'Literatura Cyberpunk': ['Neuromancer', 'Snow Crash', 'Do Androids Dream of Electric Sheep?', 'Altered Carbon', 'The Diamond Age'],
             'Literatura Brasileira': ['Grande Sertão: Veredas', 'Dom Casmurro', 'Memórias Póstumas de Brás Cubas', 'O Cortiço', 'Vidas Secas'],
             'Literatura Russa': ['Crime e Castigo', 'Anna Karenina', 'Guerra e Paz', 'Os Irmãos Karamazov', 'Lolita'],
@@ -135,19 +146,28 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < quantidade; i++) {
             const titulo = titulos[categoria][i % titulos[categoria].length];
             const imagemUrl = `capas/${categoria.toLowerCase().replace(/\s+/g, '-')}/${i + 1}.jpg`;
-            livros += `
-                <div class="livro">
-                    <img src="${imagemUrl}" alt="Capa do Livro ${titulo}">
-                    <h3>${titulo}</h3>
-                    <button class="comprar">+ Comprar</button>
-                    <p>$10,00</p>
-                </div>
-            `;
-        }
-        return livros;
-    }
-
-    function carregarPagina(pagina) {
+             livros += `                                                                                                                                    
+                 <div class="livro">                                                                                                                        
+                     <img src="${imagemUrl}" alt="Capa do Livro ${titulo}">                                                                                 
+                     <h3>${titulo}</h3>                                                                                                                     
+                     <button class="comprar" data-titulo="${titulo}" data-preco="10.00">+ Comprar</button>                                                  
+                     <p>$10,00</p>                                                                                                                          
+                 </div>                                                                                                                                     
+             `;                                                                                                                                             
+         }                                                                                                                                                  
+         return livros;                                                                                                                                     
+     }                                                                                                                                                      
+                                                                                                                                                            
+     function adicionarAoCarrinho(titulo, preco) {                                                                                                          
+         carrinho.push({ titulo, preco });                                                                                                                  
+         atualizarCarrinho();                                                                                                                               
+     }                                                                                                                                                      
+                                                                                                                                                            
+     function atualizarCarrinho() {                                                                                                                         
+         carrinhoContador.textContent = carrinho.length;                                                                                                    
+     }                                                                                                                                                      
+                                                                                                                                                            
+     function carregarPagina(pagina) {
         content.innerHTML = pages[pagina];
         if (pagina === 'faq') {
             const faqQuestions = document.querySelectorAll('.faq-question');
@@ -168,6 +188,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Carregar a página inicial por padrão
-    carregarPagina('home');
-});
+     // Carregar a página inicial por padrão                                                                                                                
+     carregarPagina('home');                                                                                                                                
+                                                                                                                                                            
+     // Adicionar evento de clique para os botões de compra                                                                                                 
+     document.addEventListener('click', function(e) {                                                                                                       
+         if (e.target && e.target.classList.contains('comprar')) {                                                                                          
+             const titulo = e.target.getAttribute('data-titulo');                                                                                           
+             const preco = parseFloat(e.target.getAttribute('data-preco'));                                                                                 
+             adicionarAoCarrinho(titulo, preco);                                                                                                            
+         }                                                                                                                                                  
+     });                                                                                                                                                    
+                                                                                                                                                            
+     // Adicionar evento de clique para o botão do carrinho                                                                                                 
+     carrinhoBtn.addEventListener('click', function(e) {                                                                                                    
+         e.preventDefault();                                                                                                                                
+         carregarPagina('carrinho');                                                                                                                        
+     });                                                                                                                                                    
+                                                                                                                                                            
+     function renderizarCarrinho() {                                                                                                                        
+         const itensCarrinho = document.getElementById('itens-carrinho');                                                                                   
+         const totalCarrinho = document.getElementById('total-carrinho');                                                                                   
+         let html = '';                                                                                                                                     
+         let total = 0;                                                                                                                                     
+                                                                                                                                                            
+         carrinho.forEach((item, index) => {                                                                                                                
+             html += `                                                                                                                                      
+                 <div class="item-carrinho">                                                                                                                
+                     <span>${item.titulo}</span>                                                                                                            
+                     <span>$${item.preco.toFixed(2)}</span>                                                                                                 
+                     <button class="remover-item" data-index="${index}">Remover</button>                                                                    
+                 </div>                                                                                                                                     
+             `;                                                                                                                                             
+             total += item.preco;                                                                                                                           
+         });                                                                                                                                                
+                                                                                                                                                            
+         itensCarrinho.innerHTML = html;                                                                                                                    
+         totalCarrinho.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;                                                                                  
+                                                                                                                                                            
+         // Adicionar evento de clique para os botões de remover                                                                                            
+         const botoesRemover = document.querySelectorAll('.remover-item');                                                                                  
+         botoesRemover.forEach(botao => {                                                                                                                   
+             botao.addEventListener('click', function() {                                                                                                   
+                 const index = parseInt(this.getAttribute('data-index'));                                                                                   
+                 carrinho.splice(index, 1);                                                                                                                 
+                 renderizarCarrinho();                                                                                                                      
+                 atualizarCarrinho();                                                                                                                       
+             });                                                                                                                                            
+         });                                                                                                                                                
+                                                                                                                                                            
+         // Adicionar evento de clique para o botão de finalizar compra                                                                                     
+         const finalizarCompra = document.getElementById('finalizar-compra');                                                                               
+         if (finalizarCompra) {                                                                                                                             
+             finalizarCompra.addEventListener('click', function() {                                                                                         
+                 alert('Compra finalizada! Total: $' + total.toFixed(2));                                                                                   
+                 carrinho = [];                                                                                                                             
+                 renderizarCarrinho();                                                                                                                      
+                 atualizarCarrinho();                                                                                                                       
+             });                                                                                                                                            
+         }                                                                                                                                                  
+     }                                                                                                                                                      
+                                                                                                                                                            
+     // Modificar a função carregarPagina para incluir a renderização do carrinho                                                                           
+     const carregarPaginaOriginal = carregarPagina;                                                                                                         
+     carregarPagina = function(pagina) {                                                                                                                    
+         carregarPaginaOriginal(pagina);                                                                                                                    
+         if (pagina === 'carrinho') {                                                                                                                       
+             renderizarCarrinho();                                                                                                                          
+         }                                                                                                                                                  
+     };                                                                                                                                                     
+ }); 
