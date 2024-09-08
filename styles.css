@@ -142,7 +142,52 @@ form button {
     cursor: pointer;
 }
 
-.faq-answer {
-    display: none;
-    padding-left: 1rem;
-}
+.faq-answer {                                                                                                                                              
+     display: none;                                                                                                                                         
+     padding-left: 1rem;                                                                                                                                    
+ }                                                                                                                                                          
+                                                                                                                                                            
+ #carrinho-btn {                                                                                                                                            
+     position: relative;                                                                                                                                    
+ }                                                                                                                                                          
+                                                                                                                                                            
+ #carrinho-contador {                                                                                                                                       
+     background-color: red;                                                                                                                                 
+     color: white;                                                                                                                                          
+     border-radius: 50%;                                                                                                                                    
+     padding: 2px 6px;                                                                                                                                      
+     font-size: 12px;                                                                                                                                       
+     position: absolute;                                                                                                                                    
+     top: -10px;                                                                                                                                            
+     right: -10px;                                                                                                                                          
+ }                                                                                                                                                          
+                                                                                                                                                            
+ #carrinho {                                                                                                                                                
+     padding: 2rem;                                                                                                                                         
+ }                                                                                                                                                          
+                                                                                                                                                            
+ .item-carrinho {                                                                                                                                           
+     display: flex;                                                                                                                                         
+     justify-content: space-between;                                                                                                                        
+     align-items: center;                                                                                                                                   
+     margin-bottom: 1rem;                                                                                                                                   
+     padding: 0.5rem;                                                                                                                                       
+     border: 1px solid #ddd;                                                                                                                                
+ }                                                                                                                                                          
+                                                                                                                                                            
+ .remover-item {                                                                                                                                            
+     background-color: #ff4444;                                                                                                                             
+     color: white;                                                                                                                                          
+     border: none;                                                                                                                                          
+     padding: 0.25rem 0.5rem;                                                                                                                               
+     cursor: pointer;                                                                                                                                       
+ }                                                                                                                                                          
+                                                                                                                                                            
+ #finalizar-compra {                                                                                                                                        
+     background-color: #4CAF50;                                                                                                                             
+     color: white;                                                                                                                                          
+     border: none;                                                                                                                                          
+     padding: 0.5rem 1rem;                                                                                                                                  
+     cursor: pointer;                                                                                                                                       
+     margin-top: 1rem;                                                                                                                                      
+ }     
